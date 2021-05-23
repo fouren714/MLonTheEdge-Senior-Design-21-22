@@ -1,0 +1,3 @@
+Files containing solutions to book problems as well as other relevant machine learning 
+code should be saved in this folder. Use a meaningful title for each solution, containing 
+at least the chapter where the problem can be found.
