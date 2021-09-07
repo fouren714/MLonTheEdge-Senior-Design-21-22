@@ -1,5 +1,5 @@
 Links to useful articles found relevant to machine learning on the edge can be pasted 
-in this file. If possible, write a breif explanation as to why the article will be 
+in this file. If possible, write a brief explanation as to why the article will be 
 useful in our project
 
 
