@@ -1,0 +1,15 @@
+train: ./kittiyolo/train/images
+val: ./kittiyolo/valid/images
+
+nc: 8
+names:
+  [
+    "Car",
+    "Van",
+    "Truck",
+    "Pedestrian",
+    "Person_sitting",
+    "Cyclist",
+    "Tram",
+    "DontCare",
+  ]

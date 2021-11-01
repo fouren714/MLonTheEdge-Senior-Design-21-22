@@ -1,2 +1,0 @@
-Ideas regarding methods, topics, or focuses of our project can be placed in this folder.
-To do so, create a new text file with a title relevant to the information contained.
