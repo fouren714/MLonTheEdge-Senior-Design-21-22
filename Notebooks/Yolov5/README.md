@@ -27,3 +27,6 @@
 
 - To train on the LPCV.ai data from the challenges files:
   - This is not working correcrtly at this point and should be ignored until noted
+
+
+In any cell with the command !python detect.py, different versions of the model can be run after they have been created by changing "./runs/train/exp/weights/best.pt" to the correct path to the new model file
