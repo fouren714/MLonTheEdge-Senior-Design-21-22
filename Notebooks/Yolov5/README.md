@@ -6,8 +6,6 @@
 
 - To train on LPCV data from our Roboflow dataset:
 
-  - Rename the folder created by the initial cell from "LPCV_data-2" to "LPCV_data_2"
-  - Inside that folder, in the file data.yaml, change all "LPCV_data-2" to "LPCV_data_2"
   - Upload the video file "5p5b_03A1.mp4" from the LPCV.ai challenge
   - Scroll to last section of the notebook, after the cell titled "END OF LPCV DATA FROM WEBSITE"
   - Run the cells after
@@ -27,6 +25,5 @@
 
 - To train on the LPCV.ai data from the challenges files:
   - This is not working correcrtly at this point and should be ignored until noted
-
 
 In any cell with the command !python detect.py, different versions of the model can be run after they have been created by changing "./runs/train/exp/weights/best.pt" to the correct path to the new model file
