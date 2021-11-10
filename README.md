@@ -11,4 +11,4 @@ This is the main repository for code for the 2021 ML on the Edge senior project
 - The Yolov5 folder can be used as an example
 
 #LPCV_preprocess
-- Current idea: break each frame into a dataframe. Convert dataframe to csv, convert csv to xml with format like 'example.xml'. Break MP4 into labeled frames. From here we can train easily
+- Current idea: break each frame into a dataframe. Convert dataframe to csv, convert csv to xml with format like 'example.xml'. Break MP4 into labeled frames (jpg files). From here we can train easily
