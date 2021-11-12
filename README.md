@@ -9,3 +9,6 @@ This is the main repository for code for the 2021 ML on the Edge senior project
 - Inside of that folder, upload your .ipynb file and create a README.md file, containing any additional information that may be needed
 
 - The Yolov5 folder can be used as an example
+
+#LPCV_preprocess
+- Current idea: break each frame into a dataframe. Convert dataframe to csv, convert csv to xml with format like 'example.xml'. Break MP4 into labeled frames (jpg files). From here we can train easily
