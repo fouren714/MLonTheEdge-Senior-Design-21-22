@@ -14,7 +14,7 @@ def process_image(img):
     # Returns
         image: ndarray(64, 64, 3), processed image.
     """
-    image = np.array(img.resize((416, 416)), dtype="int8")
+    image = np.array(img.resize((320, 320)), dtype="int8")
     #     image /= 255.
     image = np.expand_dims(image, axis=0)
 
