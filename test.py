@@ -2,8 +2,17 @@ import tflite_runtime.interpreter as tflite
 from PIL import Image
 import datetime
 import numpy as np
+import argparse
 import os
+import sys
+from pathlib import Path
 import cv2
+
+FILE = Path(__file__).resolve()
+ROOT = FILE.parents[0]  # YOLOv5 root directory
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))  # add ROOT to PATH
+ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 
 def process_image(img):
@@ -25,11 +34,11 @@ def detect_image(image, interpreter):
     shape = np.array(pimage).shape
     outs = [np.array(outs)]
     image = np.array(image)
+    print(time)
     return outs, time
 
 
 def detect_video(video, interpreter):
-    # video_path = os.path.join(video)
     vidcap = cv2.VideoCapture(video)
     success, image = vidcap.read()
     count = 0
@@ -43,18 +52,42 @@ def detect_video(video, interpreter):
     return
 
 
-model_path = "test.tflite"
-interpreter = tflite.Interpreter(model_path)
-interpreter = tflite.Interpreter(
-    model_path, experimental_delegates=[tflite.load_delegate("libedgetpu.so.1")]
-)
-# import tensorflow as tf
-# interpreter = tf.lite.Interpreter(model_path)
-print(type(interpreter))
+def run(weights=ROOT / 'yolov5s.pt', source=ROOT / 'data/images'):
+    model_path = opt.weights
+    source = opt.source
+    interpreter = tflite.Interpreter(model_path)
+    interpreter = tflite.Interpreter(
+        model_path, experimental_delegates=[tflite.load_delegate("libedgetpu.so.1")]
+    )
+    # import tensorflow as tf
 
-interpreter.allocate_tensors()
-image = "test.jpg"
-image = Image.open(image)
-detect_image(image, interpreter)
-video = "4p1b_01A2.m4v"
-detect_video(video, interpreter)
+    # interpreter = tf.lite.Interpreter(model_path)
+    # print(type(interpreter))
+
+    interpreter.allocate_tensors()
+    
+    if source.endswith("jpg") or source.endswith("jpeg"):
+        source = Image.open(source)
+        detect_image(source, interpreter)
+    elif source.endswith("m4v") or source.endswith("mp4"): 
+        video = "4p1b_01A2.m4v"
+        detect_video(video, interpreter)
+    else:
+        return
+
+
+def main(opt):
+    run(**vars(opt))
+
+
+def parse_opt():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--weights", type=str, default=ROOT / "test.tflite", help="model path(s)",)
+    parser.add_argument("--source", type=str,default=ROOT / "test.jpg",)
+    opt = parser.parse_args()
+    return opt
+
+
+if __name__ == "__main__":
+    opt = parse_opt()
+    main(opt)
