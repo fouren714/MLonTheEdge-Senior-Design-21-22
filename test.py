@@ -3,7 +3,7 @@ import PIL
 import PIL.Image
 import datetime
 
-model_path = "../best-int8_edgetpu.tflite"
+model_path = "test.tflite"
 interpreter = tflite.Interpreter(model_path)
 interpreter = tflite.Interpreter(
     model_path, experimental_delegates=[tflite.load_delegate("libedgetpu.so.1")]
