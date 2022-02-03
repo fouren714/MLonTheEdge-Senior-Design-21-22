@@ -3,6 +3,23 @@ import PIL
 import PIL.Image
 import datetime
 
+
+def process_image(img):
+    """Resize, reduce and expand image.
+
+    # Argument:
+        img: original image.
+
+    # Returns
+        image: ndarray(64, 64, 3), processed image.
+    """
+    image = np.array(img.resize((416, 416)), dtype="int8")
+    #     image /= 255.
+    image = np.expand_dims(image, axis=0)
+
+    return image
+
+
 model_path = "test.tflite"
 interpreter = tflite.Interpreter(model_path)
 interpreter = tflite.Interpreter(
