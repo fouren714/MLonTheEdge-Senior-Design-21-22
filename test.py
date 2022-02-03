@@ -43,8 +43,9 @@ def detect_video(video, interpreter):
     success, image = vidcap.read()
     count = 0
     time_array = []
-    while success:
+    while success and count<20:
         outs, time = detect_image(Image.fromarray(image), interpreter)
+        print(np.array(outs).shape)
         time_array.append(time)
         success, image = vidcap.read()
         count += 1
