@@ -1,6 +1,6 @@
 import tflite_runtime.interpreter as tflite
 import PIL
-import PIL.Image
+from PIL import Image
 import datetime
 
 
