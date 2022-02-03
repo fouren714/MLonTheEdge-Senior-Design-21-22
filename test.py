@@ -2,6 +2,7 @@ import tflite_runtime.interpreter as tflite
 import PIL
 from PIL import Image
 import datetime
+import numpy as np
 
 
 def process_image(img):
