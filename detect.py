@@ -53,7 +53,7 @@ def detect_video(video, interpreter, imgsz):
     return
 
 
-def run(weights=ROOT / 'yolov5s.pt', source=ROOT / 'data/images'):
+def run(weights=ROOT / 'yolov5s.pt', source=ROOT / 'data/images', imgsz=256):
     model_path = opt.weights
     source = opt.source
     imgsz = opt.imgsz
