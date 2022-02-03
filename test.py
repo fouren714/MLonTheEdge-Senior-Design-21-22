@@ -35,7 +35,7 @@ print(pimage)
 image = Image.open(image)
 input_index = interpreter.get_input_details()[0]["index"]
 output_index = interpreter.get_output_details()[0]["index"]
-interpreter.set_tensor(input_index, np.array(pimage))
+interpreter.set_tensor(input_index, np.array(pimage, dtype="uint8"))
 start = datetime.datetime.now()
 interpreter.invoke()
 print(datetime.datetime.now() - start)
