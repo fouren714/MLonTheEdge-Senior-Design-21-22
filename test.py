@@ -16,7 +16,7 @@ ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 
 def process_image(img):
-    image = np.array(img.resize((320, 320)), dtype="int8")
+    image = np.array(img.resize((256, 256)), dtype="int8")
     #     image /= 255.
     image = np.expand_dims(image, axis=0)
     return image
