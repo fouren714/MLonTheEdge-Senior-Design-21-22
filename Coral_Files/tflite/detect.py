@@ -25,6 +25,7 @@ python3 detect.py \
 import argparse
 import cv2
 import os
+import time
 
 from pycoral.adapters.common import input_size
 from pycoral.adapters.detect import get_objects
@@ -33,9 +34,9 @@ from pycoral.utils.edgetpu import make_interpreter
 from pycoral.utils.edgetpu import run_inference
 
 def main():
-    default_model_dir = '../all_models'
-    default_model = 'mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite'
-    default_labels = 'coco_labels.txt'
+    default_model_dir = 'coral/Coral_Files/tflite/'
+    default_model = 'effDet0_LPCV_edgetpu.tflite'
+    default_labels = 'LPCV_labels.txt'
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', help='.tflite model path',
                         default=os.path.join(default_model_dir,default_model))
@@ -55,7 +56,7 @@ def main():
     inference_size = input_size(interpreter)
 
     cap = cv2.VideoCapture(args.camera_idx)
-
+    inference_time = []
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -64,10 +65,14 @@ def main():
 
         cv2_im_rgb = cv2.cvtColor(cv2_im, cv2.COLOR_BGR2RGB)
         cv2_im_rgb = cv2.resize(cv2_im_rgb, inference_size)
+        start = time.time()
         run_inference(interpreter, cv2_im_rgb.tobytes())
         objs = get_objects(interpreter, args.threshold)[:args.top_k]
         cv2_im = append_objs_to_img(cv2_im, inference_size, objs, labels)
-
+        end = time. time
+        inference_time.append(end-start)
+        #print average inference time
+        print (sum(inference_time)/len(inference_time))
         cv2.imshow('frame', cv2_im)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
