@@ -1,0 +1,37 @@
+First try:
+
+This part can be added to the val.py file in YOLOv5 ( in line 155 as of 2/8/22 ) or you can paste it 
+
+    # Data
+    data = check_dataset(data)  # check
+
+#prune
+    pruned_model = DetectMultiBackend(['PATH_TO_best.pt'], device=device, dnn=False)
+    from utils.torch_utils import prune
+    prune(pruned_model, 0.3)
+    torch.save({'model': pruned_model}, 'model_pruned.pt')
+
+# Configure
+model.eval()
+is_coco = isinstance(data.get('val'), str) and data['val'].endswith('coco/val2017.txt')  # COCO dataset
+nc = 1 if single_cls else int(data['nc'])  # number of classes
+iouv = torch.linspace(0.5, 0.95, 10).to(device)  # iou vector for mAP@0.5:0.95
+niou = iouv.numel()
+
+-------------------------------------------------------------------------------------------------------------------
+
+Second try:
+
+!git clone https://github.com/neuralmagic/sparseml
+%cd sparseml
+
+Add this line to train.py in YOLOv5 ( in line 487 as of 2/8/22) or in def parse_opt(known=False): method
+
+parser.add_argument('--recipe', type=str, default=None, help='Path to a sparsification recipe, '
+                                                                 'see https://github.com/neuralmagic/sparseml for more information')
+
+
+Add this code to try prune recipe
+!python train.py --img 416 --batch 150 --epochs 20 --cfg yolov5s.yaml --weights PATH_TO_best.pt --data data.yaml --hyp ./data/hyps/hyp.scratch.yaml --recipe ./sparseml/integrations/ultralytics-yolov5/recipes/yolov5s.pruned.md
+                                                                                                                                                            # different recipes can be choosen 
+
