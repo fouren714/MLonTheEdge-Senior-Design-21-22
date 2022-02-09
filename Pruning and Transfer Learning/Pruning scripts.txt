@@ -35,3 +35,9 @@ Add this code to try prune recipe
 !python train.py --img 416 --batch 150 --epochs 20 --cfg yolov5s.yaml --weights PATH_TO_best.pt --data data.yaml --hyp ./data/hyps/hyp.scratch.yaml --recipe ./sparseml/integrations/ultralytics-yolov5/recipes/yolov5s.pruned.md
                                                                                                                                                             # different recipes can be choosen 
 
+
+
+--------------------------------------
+
+Third try:
+
