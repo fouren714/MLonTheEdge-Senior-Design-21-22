@@ -10,8 +10,8 @@ This is the main repository for code for the 2021 ML on the Edge senior project
 
 - The Yolov5 folder can be used as an example
 
-# LPCV_preprocess
-- Current idea: break each frame into a dataframe. Convert dataframe to csv, convert csv to xml with format like 'example.xml'. Break MP4 into labeled frames (jpg files). From here we can train easily
+# LPCV_PASCAL_Preprocess
+- Scripts for generating PASCAL_VOC labelfiles for multi-object pictures. 
 
 # Cloud Storage:
 Google Drive: https://drive.google.com/drive/folders/1puMZYXoDs6mlENHf_ceZBcxFyCEGjgil?usp=sharing
