@@ -1,0 +1,17 @@
+First Try:
+
+clone to this github
+
+!git clone https://github.com/neuralmagic/sparseml
+%cd sparseml
+
+Add this line to train.py in YOLOv5 ( in line 487 as of 2/8/22) or in def parse_opt(known=False): method
+
+parser.add_argument('--recipe', type=str, default=None, help='Path to a sparsification recipe, '
+                                                                 'see https://github.com/neuralmagic/sparseml for more information')
+
+
+Add this code to try prune recipe
+!python train.py --img 416 --batch 150 --epochs 20 --cfg yolov5s.yaml --weights PATH_TO_best.pt --data data.yaml --hyp ./data/hyps/hyp.scratch.yaml --recipe /sparseml/integrations/ultralytics-yolov5/recipes/yolov5.transfer_learn_pruned_quantized.md
+                                                                                                                                                            # different recipes can be choosen 
+
